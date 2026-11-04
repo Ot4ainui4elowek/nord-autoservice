@@ -78,7 +78,7 @@ figure { margin: 0; }
 .hero { padding: 56px 0 72px; }
 .hero__grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
 .hero h1 {
-  font-size: clamp(40px, 5.6vw, 76px); line-height: 1; font-weight: 800; letter-spacing: -0.045em;
+  font-size: clamp(40px, 5.2vw, 72px); line-height: 1; font-weight: 800; letter-spacing: -0.045em;
 }
 .hero__lead { margin-top: 24px; font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 30em; }
 .hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
@@ -462,4 +462,11 @@ figure { margin: 0; }
     grid-column: 2; grid-row: 1 / span 2; margin: 0; padding: 14px 22px;
     border-radius: var(--r-sm); background: #fff; color: var(--blue); font-size: 20px;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 .ln + .ln + .ln > span { animation-delay: .34s; }
+  .hero__lead    { animation-delay: .55s; }
+  .hero__actions { animation-delay: .68s; }
+  .hero__meta    { animation-delay: .82s; }
 }
