@@ -275,6 +275,7 @@ figure { margin: 0; }
   .contacts__info dd { font-size: 14.5px; }
   .footer__inner { flex-direction: column; gap: 2px; padding: 16px; font-size: 13px; }
 
+  .landmarks + .btn, .btn--line:not(.btn--lg) { padding: 0 10px; font-size: 14px; white-space: nowrap; min-width: 0; }
   .callbar {
     display: flex; align-items: center; gap: 8px;
     position: fixed; z-index: 30; left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom));
