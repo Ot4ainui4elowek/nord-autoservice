@@ -179,46 +179,99 @@ figure { margin: 0; }
 }
 
 @media (max-width: 640px) {
-  body { font-size: 16px; padding-bottom: 84px; }
-  .wrap { padding: 0 18px; }
-  .topbar__inner { height: 62px; gap: 12px; }
-  .logo__mark { width: 32px; height: 32px; }
-  .logo__text { font-size: 19px; }
+  body { font-size: 15.5px; line-height: 1.5; }
+  .footer { padding-bottom: 76px; }
+  .wrap { padding: 0 16px; }
+  html { scroll-padding-top: 64px; }
+
+  /* шапка */
+  .topbar__inner { height: 56px; gap: 12px; }
+  .logo { gap: 10px; }
+  .logo__mark { width: 30px; height: 30px; }
+  .logo__text { font-size: 18px; }
+  .logo__text small { font-size: 11.5px; }
   .topbar__phone { display: none; }
-  .topbar__call { margin-left: auto; width: 42px; padding: 0; }
+  .topbar__call { margin-left: auto; width: 40px; height: 40px; padding: 0; }
   .topbar__call span { display: none; }
 
-  .hero { padding: 32px 0 48px; }
-  .hero h1 { font-size: 44px; }
-  .hero__lead { font-size: 17px; margin-top: 18px; }
-  .hero__actions { margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; }
+  /* первый экран: фото сверху, всё главное — в один экран */
+  .hero { padding: 12px 0 32px; }
+  .hero__grid { gap: 20px; }
+  .hero__media { order: -1; }
+  .hero__media img { aspect-ratio: 16 / 9; border-radius: var(--r-md); }
+  .status { left: 10px; bottom: 10px; font-size: 13.5px; padding: 8px 12px; border-radius: 10px; gap: 8px; }
+  .hero h1 { font-size: 36px; letter-spacing: -0.04em; }
+  .hero__lead { font-size: 16px; line-height: 1.5; margin-top: 12px; }
+  .hero__actions { margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
   .hero__actions .btn--primary { grid-column: 1 / -1; }
-  .hero__meta { margin-top: 28px; padding-top: 22px; gap: 16px; flex-direction: column; }
-  .hero__media img { aspect-ratio: 4 / 3; border-radius: var(--r-md); }
-  .status { left: 12px; bottom: 12px; font-size: 14px; padding: 10px 14px; }
+  .hero__actions .btn { height: 50px; font-size: 16px; }
+  .hero__meta { display: grid; grid-template-columns: 1.25fr 1fr; gap: 14px; margin-top: 20px; padding-top: 16px; }
+  .hero__meta dt { font-size: 13px; }
+  .hero__meta dd { font-size: 14.5px; line-height: 1.35; }
 
-  .block { padding: 64px 0; }
-  .block__head { margin-bottom: 28px; gap: 14px; }
+  /* секции */
+  .block { padding: 44px 0; }
+  .block__head { margin-bottom: 20px; gap: 8px; }
+  .block__head h2, .master h2, .contacts h2 { font-size: 28px; }
+  .block__head p { font-size: 15px; }
 
-  .services { grid-template-columns: 1fr; }
-  .service { display: grid; grid-template-columns: 32px 1fr; column-gap: 16px; padding: 22px 20px; }
-  .service__ic { width: 32px; height: 32px; margin: 0; grid-row: span 2; }
-  .service p { margin-top: 6px; }
-  .service--cta { display: flex; padding: 26px 20px; }
-  .service__link { padding-top: 16px; }
+  /* услуги: компактный список, описание раскрывается по тапу */
+  .services { grid-template-columns: 1fr; border-radius: 14px; }
+  .service { display: grid; grid-template-columns: 26px 1fr 20px; column-gap: 14px; align-items: center; padding: 16px; }
+  .service__ic { width: 26px; height: 26px; margin: 0; }
+  .service h3 { font-size: 16.5px; }
+  .service p { grid-column: 2 / -1; margin-top: 6px; font-size: 14.5px; line-height: 1.5; }
+  .js .service:not(.service--cta) { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .js .service:not(.service--cta)::after {
+    content: ""; grid-column: 3; grid-row: 1; width: 9px; height: 9px; justify-self: center;
+    border-right: 2px solid var(--ink-2); border-bottom: 2px solid var(--ink-2);
+    transform: translateY(-2px) rotate(45deg); transition: transform .2s;
+  }
+  .js .service.is-open::after { transform: translateY(2px) rotate(-135deg); }
+  .js .service:not(.service--cta):not(.is-open) p { display: none; }
+  .service--cta { display: block; padding: 20px 16px; }
+  .service--cta p { margin-top: 6px; }
+  .service__link { padding-top: 12px; font-size: 17px; }
 
-  .route__card { padding: 24px 20px; }
-  .route__links { grid-template-columns: 1fr 1fr; }
+  /* мастер */
+  .master { gap: 20px; }
+  .master__media { order: -1; }
+  .master__media img { aspect-ratio: 16 / 9; border-radius: var(--r-md); object-position: center 60%; }
+  .master__role { margin-top: 6px; font-size: 15.5px; }
+  .master__copy > p:not(.master__role) { margin-top: 14px; }
+  .checks { margin-top: 18px; gap: 10px; }
+  .checks li { gap: 10px; font-size: 15px; }
+  .checks .ic { width: 22px; height: 22px; margin-top: 0; }
 
-  .contacts { padding: 64px 0; }
-  .contacts__phone { font-size: 38px; }
-  .contacts__actions { display: grid; }
-  .footer__inner { flex-direction: column; gap: 4px; padding: 20px 18px; }
+  /* как добраться: карта и ориентиры одной карточкой */
+  .route { gap: 0; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .route__map { border: 0; border-radius: 0; }
+  .route__map, .route__map iframe { min-height: 240px; }
+  .route__card { border: 0; border-radius: 0; border-top: 1px solid var(--line); padding: 16px; }
+  .route__card h3 { display: none; }
+  .landmarks { margin: 0; gap: 8px; font-size: 15px; }
+  .landmarks .ic { width: 18px; height: 18px; margin-top: 2px; }
+  .route__links { padding-top: 16px; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .route__links .btn { height: 44px; font-size: 15px; }
+
+  /* контакты */
+  .contacts { padding: 44px 0; }
+  .contacts__grid { gap: 24px; }
+  .contacts h2 { font-size: 24px; max-width: none; }
+  .contacts__phone { margin-top: 14px; font-size: 36px; }
+  .contacts__actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 20px; }
+  .sm-hide { display: none; }
+  .contacts__actions .btn { min-width: 0; height: 46px; padding: 0 10px; font-size: 14.5px; gap: 8px; }
+  .contacts__info { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .contacts__info div { padding-top: 14px; }
+  .contacts__info dt { font-size: 13px; }
+  .contacts__info dd { font-size: 14.5px; }
+  .footer__inner { flex-direction: column; gap: 2px; padding: 16px; font-size: 13px; }
 
   .callbar {
     display: flex; align-items: center; justify-content: center; gap: 10px;
-    position: fixed; z-index: 30; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom));
-    height: 56px; border-radius: 14px; background: var(--blue); color: #fff;
+    position: fixed; z-index: 30; left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom));
+    height: 54px; border-radius: 14px; background: var(--blue); color: #fff;
     font-weight: 700; font-size: 17px; box-shadow: 0 10px 30px rgba(31,91,255,.35);
     transform: translateY(150%); transition: transform .25s ease;
   }

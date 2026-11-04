@@ -39,3 +39,26 @@ document.getElementById('year').textContent = new Date().getFullYear();
     bar.classList.toggle('is-visible', !entries[0].isIntersecting);
   }, { threshold: 0.1 }).observe(hero);
 })();
+
+// Услуги на телефоне: тап по карточке раскрывает описание
+(function () {
+  var mq = window.matchMedia('(max-width: 640px)');
+  document.querySelectorAll('.service:not(.service--cta)').forEach(function (item) {
+    var sync = function () {
+      if (mq.matches) {
+        item.setAttribute('role', 'button');
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('aria-expanded', String(item.classList.contains('is-open')));
+      } else {
+        item.removeAttribute('role');
+        item.removeAttribute('tabindex');
+        item.removeAttribute('aria-expanded');
+      }
+    };
+    var toggle = function () { if (!mq.matches) return; item.classList.toggle('is-open'); sync(); };
+    item.addEventListener('click', toggle);
+    item.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); } });
+    sync();
+    if (mq.addEventListener) mq.addEventListener('change', sync);
+  });
+})();
