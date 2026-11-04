@@ -56,7 +56,7 @@ figure { margin: 0; }
 .btn--light { background: rgba(255,255,255,.12); color: #fff; border-color: rgba(255,255,255,.24); }
 .btn--light:hover { background: rgba(255,255,255,.2); }
 .btn--sm { height: 42px; padding: 0 16px; font-size: 15px; }
-.btn--lg { height: 56px; padding: 0 20px; font-size: 17px; }
+.btn--lg { height: 56px; padding: 0 18px; font-size: 17px; }
 
 /* ---------- Шапка ---------- */
 .topbar {
@@ -81,7 +81,7 @@ figure { margin: 0; }
   font-size: clamp(40px, 5.2vw, 72px); line-height: 1; font-weight: 800; letter-spacing: -0.045em;
 }
 .hero__lead { margin-top: 24px; font-size: 19px; line-height: 1.55; color: var(--ink-2); max-width: 30em; }
-.hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
 .hero__meta { display: flex; flex-wrap: wrap; gap: 20px 40px; margin: 40px 0 0; padding-top: 28px; border-top: 1px solid var(--line); }
 .hero__meta dt { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); }
 .hero__meta dt .ic { width: 16px; height: 16px; color: var(--blue); }
