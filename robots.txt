@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bogdanaichannel-coder.github.io/nord-autoservice/sitemap.xml
+Sitemap: https://ot4ainui4elowek.github.io/nord-autoservice/sitemap.xml

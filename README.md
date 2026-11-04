@@ -21,7 +21,7 @@ python -m http.server 8765
 ## Публикация на GitHub Pages
 
 Settings → Pages → Source: «Deploy from a branch», ветка `main`, папка `/ (root)`.
-Адрес: https://bogdanaichannel-coder.github.io/nord-autoservice/
+Адрес: https://ot4ainui4elowek.github.io/nord-autoservice/
 
 ## SEO — что сделать после публикации
 
