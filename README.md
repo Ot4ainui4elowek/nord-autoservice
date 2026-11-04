@@ -22,3 +22,13 @@ python -m http.server 8765
 
 Settings → Pages → Source: «Deploy from a branch», ветка `main`, папка `/ (root)`.
 Адрес: https://bogdanaichannel-coder.github.io/nord-autoservice/
+
+## SEO — что сделать после публикации
+
+1. **Google Search Console** (https://search.google.com/search-console) — добавить сайт, отправить `sitemap.xml`.
+2. **Яндекс.Вебмастер** (https://webmaster.yandex.ru) — добавить сайт, отправить `sitemap.xml`, указать регион «Тирасполь».
+3. **Карточки на картах** — самое важное для поиска «автоэлектрик Тирасполь»:
+   Google Business Profile, Яндекс Бизнес (Яндекс Карты), 2ГИС. Везде одинаково: «Автосервис Норд», ул. Шевченко 84Б, 077 895 755, ссылка на сайт.
+4. Попросить клиентов оставлять отзывы на Google и Яндекс Картах.
+
+`robots.txt` в подпапке `/nord-autoservice/` поисковики не читают (они смотрят только корень домена), поэтому sitemap нужно отправить вручную в п. 1–2. Со своим доменом это решится само.

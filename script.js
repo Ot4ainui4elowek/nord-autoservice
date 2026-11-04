@@ -62,3 +62,69 @@ document.getElementById('year').textContent = new Date().getFullYear();
     if (mq.addEventListener) mq.addEventListener('change', sync);
   });
 })();
+
+// Тень у шапки при прокрутке
+(function () {
+  var bar = document.querySelector('.topbar');
+  if (!bar) return;
+  var on = function () { bar.classList.toggle('is-scrolled', window.scrollY > 8); };
+  on();
+  window.addEventListener('scroll', on, { passive: true });
+})();
+
+// Анимации появления: заголовки по словам, телефон по цифрам, блоки снизу вверх
+(function () {
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function split(el, byChar) {
+    var text = el.textContent.trim();
+    var parts = byChar ? Array.from(text) : text.split(' ');
+    el.setAttribute('aria-label', text);
+    el.textContent = '';
+    parts.forEach(function (part, i) {
+      var w = document.createElement('span');
+      var inner = document.createElement('span');
+      w.className = 'w';
+      w.setAttribute('aria-hidden', 'true');
+      inner.textContent = part === ' ' ? ' ' : part;
+      inner.style.setProperty('--i', i);
+      w.appendChild(inner);
+      el.appendChild(w);
+      if (!byChar && i < parts.length - 1) el.appendChild(document.createTextNode(' '));
+    });
+    el.classList.add('split');
+  }
+
+  document.querySelectorAll('.block__head h2, .master h2, .contacts h2').forEach(function (h) { split(h, false); });
+  var phone = document.querySelector('.contacts__phone');
+  if (phone) split(phone, true);
+
+  var groups = [
+    ['.block__head p', false],
+    ['.service', true],
+    ['.master__role, .master__copy > p:not(.master__role)', true],
+    ['.checks li', true],
+    ['.master__media', false],
+    ['.route__map, .route__card', true],
+    ['.landmarks li', true],
+    ['.faq__item', true],
+    ['.contacts__actions, .contacts__info > div', true]
+  ];
+  var targets = [];
+  groups.forEach(function (g) {
+    document.querySelectorAll(g[0]).forEach(function (el, i) {
+      el.classList.add('rv');
+      if (g[1]) el.style.setProperty('--i', i % 4);
+      targets.push(el);
+    });
+  });
+  document.querySelectorAll('.split').forEach(function (el) { targets.push(el); });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  targets.forEach(function (el) { io.observe(el); });
+})();
