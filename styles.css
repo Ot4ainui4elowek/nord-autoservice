@@ -276,12 +276,21 @@ figure { margin: 0; }
   .footer__inner { flex-direction: column; gap: 2px; padding: 16px; font-size: 13px; }
 
   .callbar {
-    display: flex; align-items: center; justify-content: center; gap: 10px;
+    display: flex; align-items: center; gap: 8px;
     position: fixed; z-index: 30; left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom));
-    height: 54px; border-radius: 14px; background: var(--blue); color: #fff;
-    font-weight: 700; font-size: 17px; box-shadow: 0 10px 30px rgba(31,91,255,.35);
     transform: translateY(150%); transition: transform .25s ease;
   }
+  .callbar__call {
+    flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
+    height: 54px; border-radius: 14px; background: var(--blue); color: #fff;
+    font-weight: 700; font-size: 17px; box-shadow: 0 10px 30px rgba(31,91,255,.35);
+  }
+  .callbar__msg {
+    flex: none; width: 54px; height: 54px; display: grid; place-items: center;
+    border-radius: 14px; background: #fff; border: 1px solid var(--line, #e3e8f0);
+    box-shadow: 0 10px 30px rgba(15,27,45,.18);
+  }
+  .callbar__msg .ic { width: 26px; height: 26px; }
   .callbar.is-visible { transform: none; }
 }
 
@@ -352,8 +361,8 @@ figure { margin: 0; }
 
   .service__link .ic { transition: transform .35s var(--ease-back); }
   .callbar { transition: transform .5s var(--ease-back); }
-  .callbar .ic { animation: ringIdle 5s ease-in-out 1.5s infinite; }
-  .callbar.is-visible:active { transform: scale(.97); }
+  .callbar__call .ic { animation: ringIdle 5s ease-in-out 1.5s infinite; }
+  .callbar.is-visible a:active { transform: scale(.96); }
 
   .master__media { overflow: hidden; border-radius: var(--r-lg); }
   .master__media img { transition: transform 1.4s var(--ease-out); }
