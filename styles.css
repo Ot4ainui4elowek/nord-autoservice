@@ -108,7 +108,7 @@ figure { margin: 0; }
 /* Услуги — сетка с тонкими линиями */
 .services {
   list-style: none; margin: 0; padding: 0;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
   background: var(--line); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden;
 }
 .service { background: var(--white); padding: 32px 28px 36px; display: flex; flex-direction: column; }
@@ -169,6 +169,7 @@ figure { margin: 0; }
   .nav { display: none; }
   .topbar__phone { margin-left: auto; }
   .services { grid-template-columns: repeat(2, 1fr); }
+  .service:nth-child(9) { grid-column: 1 / -1; }
 }
 
 @media (max-width: 860px) {
@@ -446,4 +447,19 @@ figure { margin: 0; }
 @media (min-width: 641px) and (max-width: 1180px) {
   .hero__actions { gap: 10px; }
   .hero__actions .btn--lg { height: 52px; padding: 0 16px; font-size: 16px; gap: 8px; }
+}
+
+/* ячейка «Не нашли свою неисправность?» — полоса во всю ширину сетки */
+@media (min-width: 641px) {
+  .service--cta {
+    grid-column: 1 / -1;
+    display: grid; grid-template-columns: 1fr auto; column-gap: 40px; align-items: center;
+    padding: 28px;
+  }
+  .service--cta h3, .service--cta p { grid-column: 1; }
+  .service--cta p { max-width: 52ch; }
+  .service--cta .service__link {
+    grid-column: 2; grid-row: 1 / span 2; margin: 0; padding: 14px 22px;
+    border-radius: var(--r-sm); background: #fff; color: var(--blue); font-size: 20px;
+  }
 }
