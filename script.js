@@ -1,11 +1,11 @@
 // Год в подвале
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Статус «Открыто / Закрыто» по времени Тирасполя. Пн–Сб 9:30–18:00.
+// Статус «Открыто / Закрыто» по времени Тирасполя. Пн–Сб 9:00–17:00.
 (function () {
   var el = document.getElementById('status');
   if (!el || !window.Intl) return;
-  var OPEN = 9 * 60 + 30, CLOSE = 18 * 60;
+  var OPEN = 9 * 60, CLOSE = 17 * 60;
   var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var parts;
   try {
@@ -19,10 +19,10 @@ document.getElementById('year').textContent = new Date().getFullYear();
   var workday = function (d) { return d >= 1 && d <= 6; };
 
   var text, open = false;
-  if (workday(day) && now >= OPEN && now < CLOSE) { open = true; text = 'Сейчас открыто, до 18:00'; }
-  else if (workday(day) && now < OPEN) { text = 'Сегодня откроемся в 9:30'; }
-  else if (workday((day + 1) % 7)) { text = 'Закрыто, откроемся завтра в 9:30'; }
-  else { text = 'Закрыто, откроемся в понедельник в 9:30'; }
+  if (workday(day) && now >= OPEN && now < CLOSE) { open = true; text = 'Сейчас открыто, до 17:00'; }
+  else if (workday(day) && now < OPEN) { text = 'Сегодня откроемся в 9:00'; }
+  else if (workday((day + 1) % 7)) { text = 'Закрыто, откроемся завтра в 9:00'; }
+  else { text = 'Закрыто, откроемся в понедельник в 9:00'; }
 
   el.querySelector('.status__text').textContent = text;
   el.classList.toggle('is-open', open);
@@ -32,7 +32,7 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Плавающая кнопка «Позвонить» на телефоне — появляется, когда первый экран прокручен
 (function () {
   var bar = document.querySelector('.callbar');
-  var hero = document.querySelector('.hero');
+  var hero = document.querySelector('.hero, .mhero');
   if (!bar || !hero) return;
   if (!('IntersectionObserver' in window)) { bar.classList.add('is-visible'); return; }
   new IntersectionObserver(function (entries) {
@@ -127,4 +127,24 @@ document.getElementById('year').textContent = new Date().getFullYear();
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   targets.forEach(function (el) { io.observe(el); });
+})();
+
+
+// Бургер-меню: на весь экран, страница под ним не прокручивается
+(function () {
+  var btn = document.querySelector('.burger');
+  var menu = document.getElementById('menu');
+  if (!btn || !menu) return;
+  var set = function (open) {
+    btn.setAttribute('aria-expanded', String(open));
+    menu.classList.toggle('is-open', open);
+    menu.setAttribute('aria-hidden', String(!open));
+    if (open) menu.removeAttribute('inert'); else menu.setAttribute('inert', '');
+    document.documentElement.classList.toggle('menu-open', open);
+  };
+  set(false);
+  btn.addEventListener('click', function () { set(!menu.classList.contains('is-open')); });
+  menu.addEventListener('click', function (e) { if (e.target.closest('.menu__link, .menu__btns a')) set(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') set(false); });
+  window.matchMedia('(min-width: 1081px)').addEventListener('change', function () { set(false); });
 })();
